@@ -2,6 +2,7 @@ const serverless = require("serverless-http");
 const express = require("express");
 const app = express();
 const mariadb = require('mariadb');
+const cors=require('cors')
 
 // db settings 
 const pool = mariadb.createPool({
@@ -10,6 +11,13 @@ const pool = mariadb.createPool({
   password: 'bsale_test',
   database:"bsale_test"
 });
+//cors 
+const corsOptions ={
+  origin:'http://127.0.0.1:5500', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+app.use(cors(corsOptions))
 
 app.get("/getAllProducts", (req, res, next) => {
   pool.getConnection()
