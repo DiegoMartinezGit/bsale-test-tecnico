@@ -21,15 +21,37 @@ const mostrar= (productos)=>{
     contenedorProductos.innerHTML=productosGrid
 }
 
-const getProducts=async()=> await fetch( lAMBDA_URL+'getAllProducts',{
-    mode: 'cors',
-    credentials: 'include'
-})
+const getProducts=async()=> await fetch( lAMBDA_URL+'getAllProducts')
 .then(async res => {
-const data= await res.json();
+let data= await res.json();
 mostrar(data.productos)
 console.log(data.productos)
 })
 .catch(error => console.error(error))
-
 getProducts();
+
+async function productsLike(event){
+    event.preventDefault();
+    let search=document.getElementById("search").value;
+    const requestOptions={
+        method: 'POST',
+        credentials: "include",
+        origin: true,
+        mode: 'cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({like: search})
+    };
+    console.log("buscando",search)
+    
+    await fetch( lAMBDA_URL+'getProductsLike',requestOptions)
+    .then(async res => {
+
+    data= await res.json();
+    productosGrid=''
+    console.log(data.productos)
+    mostrar(data.productos)
+    })
+    .catch(error =>{
+        console.error(error) 
+    } )
+}
