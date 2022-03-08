@@ -32,9 +32,9 @@ _Below its the instalation guide_
 
 1. Clone the repo
    ```sh
-   git clone ...
+   git clone https://github.com/DiegoMartinezGit/bsale-test-tecnico.git
    ```
-2. For server side install NPM packages in /..
+2. For server side install NPM packages in /bsale-test-tecnico/backend-api-serverless
    ```sh
    npm install
    ```
@@ -46,7 +46,7 @@ _Below its the instalation guide_
    ```sh
    serverless deploy
    ```
-5. For client side: 
+5. For client side deploy  \bsale-test-tecnico\frontend\src\index.html: 
    ```sh 
    Test in localhost:5500/ with server Deploy in AWS Amplify or Github pages
    ```
