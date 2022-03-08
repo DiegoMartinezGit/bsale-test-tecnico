@@ -71,6 +71,29 @@ app.post("/getProductsLike", (req, res, next) => {
       });
     });
 });
+app.get("/getAllCategories", (req, res, next) => {
+  //db quering 
+  pool.getConnection()
+    .then(conn => {
+        console.log("conected!!");
+        conn.query("select * from category;")
+        .then(rows =>{
+          res.status(200).json({categorias: rows})
+          return conn.end();
+        })
+        .catch(err => {
+          //handle error
+          console.log(err);
+          return conn.end();
+        })
+        
+    }).catch(err => {
+      console.log("Not conected")
+      return res.status(503).json({
+        message: "db not connected",
+      });
+    });
+});
 
 app.use((req, res, next) => {
   return res.status(404).json({
