@@ -1,6 +1,6 @@
 {
   "name": "backend-api-serverless",
-  "version": "1.0.0",
+  "version": "1.6.0",
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
