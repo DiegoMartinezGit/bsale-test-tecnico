@@ -50,7 +50,10 @@ const getProducts = async () =>
       productosMostrados = data.productos;
       mostrar(data.productos);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      alert("Fetch all products error ");
+      console.error(error);
+    });
 getProducts();
 
 //function to get all categories drom lambda function in backend
@@ -61,7 +64,10 @@ const getCategories = async () =>
       let data = await res.json();
       mostrarCat(data.categorias);
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      alert("Fetch categories error");
+      console.error(error);
+    });
 getCategories();
 
 //function to get products filter with "search" value from lambda function in backend
@@ -92,6 +98,7 @@ async function productsLike(event) {
     })
     .catch((error) => {
       console.error(error);
+      alert("Fetch products like :" + search + "error");
     });
 }
 //funtion to filter by category from navbar category dropdown-menu
